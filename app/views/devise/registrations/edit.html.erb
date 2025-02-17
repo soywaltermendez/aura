@@ -1,0 +1,98 @@
+<div class="max-w-2xl mx-auto">
+  <h2 class="text-2xl font-bold mb-6">Editar perfil</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-8 bg-white p-6 rounded-lg shadow-sm" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <!-- Selector de imagen de perfil -->
+    <div>
+      <h3 class="text-lg font-medium text-gray-900 mb-4">Imagen de perfil</h3>
+      <div class="grid grid-cols-3 gap-4">
+        <% User::PROFILE_IMAGES.each do |key, image| %>
+          <div>
+            <%= f.radio_button :profile_image, key, class: "sr-only peer" %>
+            <label for="user_profile_image_<%= key %>" 
+                   class="block cursor-pointer overflow-hidden rounded-lg border-2 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-500">
+              <%= image_tag image[:url], class: "w-full h-32 object-cover", alt: image[:name] %>
+              <div class="p-2">
+                <h3 class="text-sm font-medium text-gray-900"><%= image[:name] %></h3>
+                <p class="text-xs text-gray-500"><%= image[:description] %></p>
+              </div>
+            </label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Información de la cuenta -->
+    <div>
+      <h3 class="text-lg font-medium text-gray-900 mb-4">Información de la cuenta</h3>
+      
+      <div class="space-y-4">
+        <div>
+          <%= f.label :email, "Correo electrónico", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.email_field :email, autocomplete: "email", 
+              class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div class="text-sm text-gray-600">
+            Esperando confirmación para: <%= resource.unconfirmed_email %>
+          </div>
+        <% end %>
+
+        <div>
+          <%= f.label :current_password, "Contraseña actual", class: "block text-sm font-medium text-gray-700" %>
+          <div class="mt-1">
+            <%= f.password_field :current_password, autocomplete: "current-password",
+                class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+            <p class="mt-1 text-sm text-gray-500">Necesitamos tu contraseña actual para confirmar los cambios</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cambiar contraseña -->
+    <div>
+      <h3 class="text-lg font-medium text-gray-900 mb-4">Cambiar contraseña</h3>
+      <p class="text-sm text-gray-500 mb-4">Deja estos campos en blanco si no quieres cambiar tu contraseña</p>
+      
+      <div class="space-y-4">
+        <div>
+          <%= f.label :password, "Nueva contraseña", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.password_field :password, autocomplete: "new-password",
+              class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+          <% if @minimum_password_length %>
+            <p class="mt-1 text-sm text-gray-500">Mínimo <%= @minimum_password_length %> caracteres</p>
+          <% end %>
+        </div>
+
+        <div>
+          <%= f.label :password_confirmation, "Confirmar nueva contraseña", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",
+              class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-5 border-t border-gray-200">
+      <div class="flex justify-end space-x-3">
+        <%= link_to "Cancelar", :back, 
+            class: "inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+        <%= f.submit "Actualizar perfil",
+            class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="mt-10 pt-6 border-t border-gray-200">
+    <h3 class="text-lg font-medium text-gray-900 mb-4">Eliminar cuenta</h3>
+    <p class="text-sm text-gray-500 mb-4">Una vez que elimines tu cuenta, no hay vuelta atrás. Por favor, estás seguro.</p>
+    
+    <%= button_to "Eliminar mi cuenta", 
+        registration_path(resource_name), 
+        data: { confirm: "¿Estás seguro?", turbo_confirm: "¿Estás seguro?" }, 
+        method: :delete,
+        class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
+  </div>
+</div>

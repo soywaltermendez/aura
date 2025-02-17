@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Aura - Autenticación</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-gray-50">
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-md w-full space-y-8">
+        <div>
+          <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            <%= yield :title %>
+          </h2>
+        </div>
+        
+        <%= render "devise/shared/error_messages" %>
+        
+        <% if notice %><div class="alert alert-info mb-4 p-4 rounded-md bg-blue-50 text-blue-600"><%= notice %></div><% end %>
+        <% if alert %><div class="alert alert-warning mb-4 p-4 rounded-md bg-red-50 text-red-600"><%= alert %></div><% end %>
+
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html> 

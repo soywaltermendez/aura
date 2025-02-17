@@ -1,0 +1,144 @@
+es-MX:
+  mood_entries:
+    create:
+      success: "¡Estado de ánimo registrado!"
+      error: "No se pudo guardar el registro: %{errors}"
+    moods:
+      very_happy: "Muy feliz"
+      happy: "Feliz"
+      neutral: "Neutral"
+      sad: "Triste"
+      very_sad: "Muy triste"
+    activities:
+      trabajo: "Trabajo"
+      ejercicio: "Ejercicio"
+      familia: "Familia"
+      amigos: "Amigos"
+      hobbies: "Hobbies"
+      descanso: "Descanso"
+      estudio: "Estudio"
+      entretenimiento: "Entretenimiento"
+      meditación: "Meditación"
+      lectura: "Lectura"
+      música: "Música"
+      naturaleza: "Naturaleza"
+    form:
+      mood_label: "¿Cómo te sientes?"
+      energy_label: "Nivel de energía"
+      activities_label: "¿Qué has estado haciendo?"
+      submit: "Registrar estado"
+      notes_label: "¿Quieres agregar alguna nota?"
+      notes_placeholder: "Escribe aquí tus pensamientos..."
+    list:
+      title: "Tu día hasta ahora"
+    index:
+      title: "Historial de estados de ánimo"
+      description: "Un registro de tus estados de ánimo y actividades"
+      energy_level: "Nivel de energía: %{level}"
+  shared:
+    navbar:
+      home: "Inicio"
+      journal: "Diario"
+      profile: "Mi perfil"
+      sign_out: "Cerrar sesión"
+  journal_entries:
+    index:
+      title: "Diario"
+      description: "Un espacio para reflexionar sobre tu día"
+      new_entry: "Nueva entrada"
+    new:
+      title: "Nueva entrada en el diario"
+      content_label: "¿Qué quieres escribir hoy?"
+      content_placeholder: "Escribe aquí tus pensamientos..."
+      mood_label: "¿Cómo te sientes?"
+      activities_label: "¿Qué actividades quieres registrar?"
+    create:
+      success: "Entrada guardada exitosamente"
+  common:
+    save: "Guardar"
+    cancel: "Cancelar"
+  activerecord:
+    models:
+      journal_entry: "Entrada del diario"
+      mood_entry: "Estado de ánimo"
+    attributes:
+      journal_entry:
+        content: "Contenido"
+        timestamp: "Fecha y hora"
+        mood_tag: "Estado de ánimo"
+        activity_tags: "Actividades"
+      mood_entry:
+        mood: "Estado de ánimo"
+        energy_level: "Nivel de energía"
+        activities: "Actividades"
+        timestamp: "Fecha y hora"
+    errors:
+      models:
+        journal_entry:
+          attributes:
+            content:
+              blank: "no puede estar vacío"
+            timestamp:
+              blank: "no puede estar vacía"
+            mood_tag:
+              invalid: "no es válido"
+            activity_tags:
+              invalid: "contiene opciones no válidas"
+        mood_entry:
+          attributes:
+            mood:
+              blank: "no puede estar vacío"
+            energy_level:
+              blank: "no puede estar vacío"
+            activities:
+              blank: "no pueden estar vacías"
+            timestamp:
+              blank: "no puede estar vacía"
+  errors:
+    messages:
+      blank: "no puede estar vacío"
+      invalid: "no es válido"
+  time:
+    formats:
+      default: "%A, %d de %B de %Y %H:%M:%S %z"
+      long: "%-d de %B de %Y a las %H:%M"
+      short: "%d de %b %H:%M"
+      time_only: "%H:%M"
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      long: "%-d de %B de %Y"
+      short: "%d de %b"
+    day_names: [domingo, lunes, martes, miércoles, jueves, viernes, sábado]
+    abbr_day_names: [dom, lun, mar, mié, jue, vie, sáb]
+    month_names: [~, enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre]
+    abbr_month_names: [~, ene, feb, mar, abr, may, jun, jul, ago, sep, oct, nov, dic]
+    order:
+      - :day
+      - :month
+      - :year
+  devise:
+    registrations:
+      edit:
+        title: "Editar perfil"
+        profile_image_label: "Elige una imagen inspiradora para tu perfil"
+        update: "Actualizar perfil"
+      updated: "Tu cuenta ha sido actualizada correctamente"
+      update_needs_confirmation: "Has actualizado tu cuenta correctamente, pero necesitamos verificar tu nueva dirección de correo electrónico"
+      destroyed: "¡Adiós! Tu cuenta ha sido cancelada correctamente. Esperamos verte de nuevo pronto"
+    sessions:
+      signed_in: "Has iniciado sesión correctamente"
+      signed_out: "Has cerrado sesión correctamente"
+      already_signed_out: "Has cerrado sesión correctamente"
+    passwords:
+      no_token: "No puedes acceder a esta página si no vienes desde un correo de restablecimiento de contraseña"
+      send_instructions: "Recibirás un correo con instrucciones para restablecer tu contraseña en unos minutos"
+      updated: "Tu contraseña ha sido cambiada correctamente. Has sido identificado"
+    confirmations:
+      send_instructions: "Recibirás un correo electrónico con instrucciones para confirmar tu cuenta en unos minutos"
+      confirmed: "Tu cuenta ha sido confirmada correctamente"
+    failure:
+      already_authenticated: "Ya has iniciado sesión"
+      unauthenticated: "Necesitas iniciar sesión o registrarte para continuar"
+      invalid: "Correo o contraseña inválidos"
+      not_found_in_database: "Correo o contraseña inválidos" 
