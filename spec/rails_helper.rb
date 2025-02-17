@@ -34,8 +34,8 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 
-# Configurar Faker para usar locale en
-Faker::Config.locale = 'en'
+# Configurar Faker para usar locale en-US que tiene todas las traducciones
+Faker::Config.locale = 'en-US'
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
