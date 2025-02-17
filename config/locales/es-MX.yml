@@ -31,6 +31,10 @@ es-MX:
       notes_placeholder: "Escribe aquí tus pensamientos..."
     list:
       title: "Tu día hasta ahora"
+    index:
+      title: "Historial de estados de ánimo"
+      description: "Un registro de tus estados de ánimo y actividades"
+      energy_level: "Nivel de energía: %{level}"
   shared:
     navbar:
       home: "Inicio"

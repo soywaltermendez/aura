@@ -1,6 +1,10 @@
 class MoodEntriesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @mood_entries = current_user.mood_entries.order(created_at: :desc)
+  end
+
   def create
     @mood_entry = current_user.mood_entries.build(mood_entry_params)
 

@@ -13,16 +13,18 @@ RSpec.describe MoodEntry, type: :model do
     it { should validate_inclusion_of(:energy_level).in_range(1..5) }
   end
 
-  describe '#activities_must_be_valid' do
+  describe 'activities validation' do
     let(:user) { create(:user) }
+    let(:valid_activities) { ['trabajo', 'ejercicio'] }
+    let(:invalid_activities) { ['invalid_activity'] }
 
     it 'allows valid activities' do
-      mood_entry = build(:mood_entry, activities: MoodEntry::ACTIVITIES.sample(2))
+      mood_entry = build(:mood_entry, user: user, activities: valid_activities)
       expect(mood_entry).to be_valid
     end
 
     it 'rejects invalid activities' do
-      mood_entry = build(:mood_entry, activities: ['invalid_activity'])
+      mood_entry = build(:mood_entry, user: user, activities: invalid_activities)
       expect(mood_entry).not_to be_valid
       expect(mood_entry.errors[:activities]).to include(/contiene opciones no válidas/)
     end

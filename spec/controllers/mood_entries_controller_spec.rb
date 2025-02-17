@@ -5,6 +5,16 @@ RSpec.describe MoodEntriesController, type: :controller do
 
   before { sign_in user }
 
+  describe 'GET #index' do
+    it 'returns entries ordered by created_at' do
+      older_entry = create(:mood_entry, user: user, created_at: 2.hours.ago)
+      newer_entry = create(:mood_entry, user: user, created_at: 1.hour.ago)
+
+      get :index
+      expect(assigns(:mood_entries)).to eq([newer_entry, older_entry])
+    end
+  end
+
   describe 'POST #create' do
     context 'with valid params' do
       let(:valid_attributes) do

@@ -1,6 +1,8 @@
 class MoodEntry < ApplicationRecord
   belongs_to :user
 
+  scope :recent, -> { where(created_at: 24.hours.ago..) }
+
   MOODS = {
     'very_sad' => '😢',
     'sad' => '😔',

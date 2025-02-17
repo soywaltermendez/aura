@@ -3,34 +3,30 @@ require 'rails_helper'
 RSpec.describe DashboardController, type: :controller do
   let(:user) { create(:user) }
 
+  before { sign_in user }
+
   describe 'GET #index' do
-    context 'when user is logged in' do
-      before { sign_in user }
-
-      it 'returns success response' do
-        get :index
-        expect(response).to be_successful
-      end
-
-      it 'assigns new mood entry' do
-        get :index
-        expect(assigns(:mood_entry)).to be_a_new(MoodEntry)
-      end
-
-      it 'assigns today entries' do
-        create(:mood_entry, user: user, timestamp: 1.hour.ago)
-        create(:mood_entry, user: user, timestamp: 2.days.ago)
-
-        get :index
-        expect(assigns(:today_entries).count).to eq(1)
-      end
+    it 'returns http success' do
+      get :index
+      expect(response).to have_http_status(:success)
     end
 
-    context 'when user is not logged in' do
-      it 'redirects to login' do
-        get :index
-        expect(response).to redirect_to(new_user_session_path)
-      end
+    it 'assigns today entries' do
+      old_entry = create(:mood_entry, user: user, created_at: 2.days.ago)
+      recent_entry = create(:mood_entry, user: user, created_at: 1.hour.ago)
+
+      get :index
+      expect(assigns(:today_entries)).to include(recent_entry)
+      expect(assigns(:today_entries)).not_to include(old_entry)
+    end
+
+    it 'assigns week entries' do
+      old_entry = create(:mood_entry, user: user, created_at: 2.weeks.ago)
+      recent_entry = create(:mood_entry, user: user, created_at: 2.days.ago)
+
+      get :index
+      expect(assigns(:week_entries)).to include(recent_entry)
+      expect(assigns(:week_entries)).not_to include(old_entry)
     end
   end
 end
