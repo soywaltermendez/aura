@@ -11,14 +11,14 @@ RSpec.describe MoodEntriesController, type: :controller do
         {
           mood: 'happy',
           energy_level: 4,
-          activities: ['trabajo', 'ejercicio']
+          activities: %w[trabajo ejercicio]
         }
       end
 
       it 'creates a new mood entry' do
-        expect {
+        expect do
           post :create, params: { mood_entry: valid_attributes }
-        }.to change(MoodEntry, :count).by(1)
+        end.to change(MoodEntry, :count).by(1)
       end
 
       it 'redirects to root with success message' do
@@ -38,9 +38,9 @@ RSpec.describe MoodEntriesController, type: :controller do
       end
 
       it 'does not create a mood entry' do
-        expect {
+        expect do
           post :create, params: { mood_entry: invalid_attributes }
-        }.not_to change(MoodEntry, :count)
+        end.not_to change(MoodEntry, :count)
       end
 
       it 'redirects to root with error message' do
