@@ -1,0 +1,41 @@
+class MoodEntry < ApplicationRecord
+  belongs_to :user
+
+  MOODS = {
+    "very_happy" => "😊",
+    "happy" => "🙂",
+    "neutral" => "😐",
+    "sad" => "😔",
+    "very_sad" => "😢"
+  }
+
+  ACTIVITIES = [
+    "trabajo",
+    "ejercicio",
+    "familia",
+    "amigos",
+    "hobbies",
+    "descanso",
+    "estudio",
+    "entretenimiento",
+    "meditación",
+    "lectura",
+    "música",
+    "naturaleza"
+  ]
+
+  validates :mood, presence: true, inclusion: { in: MOODS.keys }
+  validates :energy_level, presence: true, inclusion: { in: 1..5 }
+  validates :activities, presence: true
+  validate :activities_must_be_valid
+
+  private
+
+  def activities_must_be_valid
+    return if activities.nil?
+    invalid_activities = activities - ACTIVITIES
+    if invalid_activities.any?
+      errors.add(:activities, "contiene opciones no válidas: #{invalid_activities.join(', ')}")
+    end
+  end
+end
