@@ -6,9 +6,9 @@ class MoodEntriesController < ApplicationController
     @mood_entry.timestamp = Time.current
 
     if @mood_entry.save
-      redirect_to root_path, notice: "¡Estado de ánimo registrado!"
+      redirect_to root_path, notice: t('.success')
     else
-      redirect_to root_path, alert: "No se pudo guardar el registro: #{@mood_entry.errors.full_messages.join(', ')}"
+      redirect_to root_path, alert: t('.error', errors: @mood_entry.errors.full_messages.join(', '))
     end
   end
 

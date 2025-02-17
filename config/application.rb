@@ -23,5 +23,12 @@ module Aura
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Configurar el idioma por defecto
+    config.i18n.default_locale = :'es-MX'
+    config.i18n.available_locales = [:'es-MX']
+
+    # Cargar todos los archivos de locales (incluyendo subdirectorios)
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
   end
 end

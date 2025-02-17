@@ -1,0 +1,24 @@
+es-MX:
+  devise:
+    sessions:
+      new:
+        title: "Bienvenido de vuelta"
+        subtitle: "Nos alegra verte de nuevo"
+        email_placeholder: "Tu correo electrónico"
+        password_placeholder: "Tu contraseña"
+        remember_me: "Recordarme"
+        sign_in: "Iniciar sesión"
+      signed_in: "Sesión iniciada exitosamente"
+      signed_out: "Sesión cerrada exitosamente"
+    shared:
+      links:
+        sign_up: "¿No tienes una cuenta? Regístrate"
+    passwords:
+      new:
+        forgot_password: "¿Olvidaste tu contraseña?"
+      send_instructions: "Recibirás un correo con instrucciones para restablecer tu contraseña"
+    registrations:
+      signed_up: "¡Bienvenido! Te has registrado exitosamente"
+    failure:
+      invalid: "Email o contraseña incorrectos"
+      unauthenticated: "Necesitas iniciar sesión o registrarte" 

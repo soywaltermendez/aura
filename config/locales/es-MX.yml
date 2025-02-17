@@ -1,0 +1,29 @@
+es-MX:
+  mood_entries:
+    create:
+      success: "¡Estado de ánimo registrado!"
+      error: "No se pudo guardar el registro: %{errors}"
+    moods:
+      very_happy: "Muy feliz"
+      happy: "Feliz"
+      neutral: "Neutral"
+      sad: "Triste"
+      very_sad: "Muy triste"
+    activities:
+      trabajo: "Trabajo"
+      ejercicio: "Ejercicio"
+      familia: "Familia"
+      amigos: "Amigos"
+      hobbies: "Hobbies"
+      descanso: "Descanso"
+      estudio: "Estudio"
+      entretenimiento: "Entretenimiento"
+      meditación: "Meditación"
+      lectura: "Lectura"
+      música: "Música"
+      naturaleza: "Naturaleza"
+    form:
+      mood_label: "¿Cómo te sientes?"
+      energy_label: "Nivel de energía"
+      activities_label: "¿Qué has estado haciendo?"
+      submit: "Registrar estado" 
