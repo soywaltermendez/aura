@@ -26,4 +26,8 @@ es-MX:
       mood_label: "¿Cómo te sientes?"
       energy_label: "Nivel de energía"
       activities_label: "¿Qué has estado haciendo?"
-      submit: "Registrar estado" 
+      submit: "Registrar estado"
+  shared:
+    navbar:
+      profile: "Mi perfil"
+      sign_out: "Cerrar sesión" 

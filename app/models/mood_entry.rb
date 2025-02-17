@@ -2,11 +2,11 @@ class MoodEntry < ApplicationRecord
   belongs_to :user
 
   MOODS = {
-    "very_happy" => "😊",
-    "happy" => "🙂",
-    "neutral" => "😐",
+    "very_sad" => "😢",
     "sad" => "😔",
-    "very_sad" => "😢"
+    "neutral" => "😐",
+    "happy" => "🙂",
+    "very_happy" => "😊"
   }
 
   ACTIVITIES = [
