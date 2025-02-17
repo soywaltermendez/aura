@@ -15,7 +15,7 @@ RSpec.describe MoodEntry, type: :model do
 
   describe 'activities validation' do
     let(:user) { create(:user) }
-    let(:valid_activities) { ['trabajo', 'ejercicio'] }
+    let(:valid_activities) { %w[trabajo ejercicio] }
     let(:invalid_activities) { ['invalid_activity'] }
 
     it 'allows valid activities' do
