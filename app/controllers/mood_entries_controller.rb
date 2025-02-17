@@ -3,7 +3,6 @@ class MoodEntriesController < ApplicationController
 
   def create
     @mood_entry = current_user.mood_entries.build(mood_entry_params)
-    @mood_entry.timestamp = Time.current
 
     if @mood_entry.save
       redirect_to root_path, notice: t('.success')

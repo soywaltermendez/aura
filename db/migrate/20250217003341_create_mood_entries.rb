@@ -5,7 +5,6 @@ class CreateMoodEntries < ActiveRecord::Migration[7.1]
       t.string :mood, null: false
       t.integer :energy_level, null: false
       t.string :activities, array: true, default: []
-      t.datetime :timestamp, null: false
 
       t.timestamps
     end

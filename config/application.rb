@@ -30,5 +30,9 @@ module Aura
 
     # Cargar todos los archivos de locales (incluyendo subdirectorios)
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+
+    # Configurar la zona horaria
+    config.time_zone = 'Mexico City'
+    config.active_record.default_timezone = :utc
   end
 end

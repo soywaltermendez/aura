@@ -57,7 +57,9 @@
           <div class="bg-white p-4 rounded-lg shadow-sm">
             <div class="flex justify-between items-center">
               <span class="text-3xl"><%= MoodEntry::MOODS[entry.mood] %></span>
-              <span class="text-gray-500"><%= entry.timestamp.strftime("%H:%M") %></span>
+              <span class="text-gray-500">
+                <%= entry.created_at.in_time_zone.strftime("%H:%M") %>
+              </span>
             </div>
             <div class="mt-2">
               <div class="text-sm text-gray-600">Energía: <%= "●" * entry.energy_level %></div>

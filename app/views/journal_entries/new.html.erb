@@ -1,0 +1,88 @@
+<% content_for :title do %>
+  <%= t('.title') %>
+<% end %>
+
+<div class="bg-white shadow-sm rounded-lg p-6">
+  <%= form_with(model: @journal_entry, class: "space-y-6") do |f| %>
+    <% if @journal_entry.errors.any? %>
+      <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-medium text-red-800">
+              <%= pluralize(@journal_entry.errors.count, "error") %>:
+            </h3>
+            <div class="mt-2 text-sm text-red-700">
+              <ul class="list-disc pl-5 space-y-1">
+                <% @journal_entry.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">
+        <%= t('.content_label') %>
+      </label>
+      <%= f.text_area :content,
+          class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-4",
+          rows: 8,
+          required: true,
+          placeholder: t('.content_placeholder') %>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-3">
+        <%= t('.mood_label') %>
+      </label>
+      <div class="flex justify-between space-x-2">
+        <% MoodEntry::MOODS.each do |key, emoji| %>
+          <div class="flex-1">
+            <%= f.radio_button :mood_tag, key, class: "sr-only peer" %>
+            <label for="journal_entry_mood_tag_<%= key %>" 
+                   class="flex flex-col items-center p-2 text-center rounded-lg cursor-pointer border-2 peer-checked:border-blue-500 peer-checked:bg-blue-50 hover:bg-gray-50">
+              <span class="text-2xl"><%= emoji %></span>
+              <span class="mt-1 text-xs text-gray-600"><%= t("mood_entries.moods.#{key}") %></span>
+            </label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-3">
+        <%= t('.background_label') %>
+      </label>
+      <div class="grid grid-cols-3 gap-4">
+        <% JournalEntry::BACKGROUND_IMAGES.each do |key, image| %>
+          <div>
+            <%= f.radio_button :background_image, key, class: "sr-only peer" %>
+            <label for="journal_entry_background_image_<%= key %>" 
+                   class="block cursor-pointer overflow-hidden rounded-lg border-2 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-500">
+              <%= image_tag image[:url], class: "w-full h-32 object-cover", alt: image[:name] %>
+              <div class="p-2">
+                <h3 class="text-sm font-medium text-gray-900"><%= image[:name] %></h3>
+                <p class="text-xs text-gray-500"><%= image[:description] %></p>
+              </div>
+            </label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="mt-6 flex justify-end space-x-3">
+      <%= link_to t('common.cancel'), journal_entries_path,
+          class: "inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+      <%= f.submit t('common.save'),
+          class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+    </div>
+  <% end %>
+</div> 

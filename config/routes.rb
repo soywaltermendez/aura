@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   root "dashboard#index"
 
   resources :mood_entries, only: [:create, :index]
+  resources :journal_entries, except: [:edit, :update, :destroy]
 end
